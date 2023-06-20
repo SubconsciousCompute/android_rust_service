@@ -1,0 +1,17 @@
+[package]
+name = "rustapp"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["dylib"]
+
+[dependencies]
+axum = "0.6.18"
+jni = { version = "0.21", default-features = false }
+tokio = { version = "1.28.2", features = ["macros", "rt-multi-thread"] }
+
+[profile.release]
+codegen-units = 1
+lto = true
+strip = true
