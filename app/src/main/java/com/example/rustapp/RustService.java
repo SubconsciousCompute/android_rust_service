@@ -16,7 +16,7 @@ public class RustService extends Service {
         System.loadLibrary("rustapp");
     }
 
-    private static native void launch();
+    private static native void startService();
 
     @Override
     public void onCreate() {
@@ -25,10 +25,12 @@ public class RustService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        super.onStartCommand(intent, flags, startId);
+
         createNotificationChannel();
         startForeground(NOTIFICATION_ID, buildNotification());
 
-        launch();
+        startService();
 
         return START_STICKY;
     }
@@ -62,7 +64,7 @@ public class RustService extends Service {
         }
 
         builder.setContentTitle("Rust Service").setContentText("Running...")
-                .setPriority(Notification.PRIORITY_DEFAULT);
+                .setSmallIcon(R.mipmap.ic_launcher).setPriority(Notification.PRIORITY_DEFAULT);
 
         return builder.build();
     }
