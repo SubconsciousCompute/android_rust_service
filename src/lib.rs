@@ -2,6 +2,7 @@
 pub mod android {
     use std::net::SocketAddr;
 
+    use android_logger::Config;
     use axum::{routing::get, Router, Server};
     use jni::{objects::JClass, JNIEnv};
 
@@ -12,6 +13,12 @@ pub mod android {
         _: JNIEnv<'local>,
         _: JClass<'local>,
     ) {
+        android_logger::init_once(
+            Config::default()
+                .with_max_level(log::LevelFilter::Trace)
+                .with_tag("RustApp"),
+        );
+
         launch();
     }
 
