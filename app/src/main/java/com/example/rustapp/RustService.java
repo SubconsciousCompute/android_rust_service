@@ -16,7 +16,7 @@ public class RustService extends Service {
         System.loadLibrary("rustapp");
     }
 
-    private static native void startService();
+    private static native void startService(String filesDir);
 
     @Override
     public void onCreate() {
@@ -30,7 +30,7 @@ public class RustService extends Service {
         createNotificationChannel();
         startForeground(NOTIFICATION_ID, buildNotification());
 
-        startService();
+        startService(this.getFilesDir().toString());
 
         return START_STICKY;
     }
