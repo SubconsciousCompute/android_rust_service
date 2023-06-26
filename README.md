@@ -70,3 +70,9 @@ export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 ```sh
 sdkmanager "build-tools;30.0.3" "emulator" "ndk;25.2.9519653" "patcher;v4" "platform-tools" "platforms;android-33"
 ```
+
+# Demo
+
+### FileSystem Monitoring
+
+<img alt="FS Monitoring" src="demo/fs.gif" />
