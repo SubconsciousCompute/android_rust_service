@@ -3,9 +3,14 @@ package com.example.rustapp;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
+
+import java.io.File;
+import java.io.FileOutputStream;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -14,17 +19,25 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        SwitchCompat serviceToggle = (SwitchCompat) findViewById(R.id.serviceToggle);
-        serviceToggle.setOnCheckedChangeListener((compoundButton, isChecked) -> {
-            Intent serviceIntent = new Intent(this, RustService.class);
-            if (isChecked)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                    startForegroundService(serviceIntent);
-                else
-                    startService(serviceIntent);
-            else
-                stopService(serviceIntent);
+        ((SwitchCompat) findViewById(R.id.serviceToggle))
+                .setOnCheckedChangeListener((compoundButton, isChecked) -> {
+                    Intent serviceIntent = new Intent(this, RustService.class);
+                    if (isChecked)
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                            startForegroundService(serviceIntent);
+                        else
+                            startService(serviceIntent);
+                    else
+                        stopService(serviceIntent);
+                });
+
+        ((Button) findViewById(R.id.clearLogs)).setOnClickListener(view -> {
+            try {
+                new FileOutputStream(new File(this.getFilesDir(), "fsmon_log.yaml")).close();
+                Toast.makeText(this, "Logs Cleared!", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Toast.makeText(this, "Failed to clear logs!", Toast.LENGTH_SHORT).show();
+            }
         });
     }
-
 }
