@@ -9,7 +9,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.SwitchCompat
+    <com.google.android.material.materialswitch.MaterialSwitch
         android:id="@+id/serviceToggle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        style="@style/Widget.Material3.Button"
         android:id="@+id/clearLogs"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"

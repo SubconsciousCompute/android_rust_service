@@ -7,7 +7,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SwitchCompat;
+
+import com.google.android.material.materialswitch.MaterialSwitch;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -19,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        ((SwitchCompat) findViewById(R.id.serviceToggle))
-                .setOnCheckedChangeListener((compoundButton, isChecked) -> {
+        ((MaterialSwitch) findViewById(R.id.serviceToggle))
+                .setOnCheckedChangeListener((buttonView, isChecked) -> {
                     Intent serviceIntent = new Intent(this, RustService.class);
                     if (isChecked)
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
