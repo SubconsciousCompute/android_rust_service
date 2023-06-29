@@ -1,6 +1,8 @@
-.gradle
 .vscode
-build
-target
 
+.gradle
+build
 app/build
+
+target
+Cargo.lock
