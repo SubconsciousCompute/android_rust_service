@@ -18,8 +18,8 @@ android {
 
     buildTypes {
         release {
-            // minifyEnabled true
-            // shrinkResources true
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
         }
     }
@@ -38,7 +38,7 @@ dependencies {
 cargo {
     module  = '..'
     libname = 'rustapp'
-    // profile = 'release'
+    profile = gradle.startParameter.taskNames.any{it.toLowerCase().contains("debug")} ? "debug" : "release"
     targets = ['arm64'] // 'arm', 'arm64', 'x86', 'x86_64'
 }
 
