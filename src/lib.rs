@@ -13,12 +13,10 @@ pub mod android {
     use crate::service::{launch, watch};
 
     #[no_mangle]
-    pub extern "system" fn Java_com_example_rustapp_RustService_startService<
-        'local,
-    >(
-        _: JNIEnv<'local>,
-        _: JClass<'local>,
-        _: JString<'local>,
+    pub extern "system" fn Java_com_example_rustapp_RustService_startService(
+        _: JNIEnv,
+        _: JClass,
+        _: JString,
     ) {
         init_once(
             android_logger::Config::default()
@@ -30,11 +28,11 @@ pub mod android {
             watch(
                 "/data/user/0/com.example.rustapp/files/fsmon_log.yaml",
                 vec!["/storage/emulated/0/Documents"],
-            )
+            );
         });
 
         spawn(|| {
-            launch("/data/user/0/com.example.rustapp/files/fsmon_log.yaml")
+            launch("/data/user/0/com.example.rustapp/files/fsmon_log.yaml");
         });
     }
 }
