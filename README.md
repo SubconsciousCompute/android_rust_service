@@ -1,8 +1,12 @@
-# Getting Started
+# <div align="center">Android Rust Service</div>
+
+Android App with foreground service using Rust Native Libraries. The service does FileSystem Monitoring and makes the logs available at http://localhost:3000/fs
+
+## Getting Started
 
 > **_NOTE:_** The following instructions are for Linux.
 > For MacOS you will have to change the download links.
-> For Windows the instructions are similar but need to be modified.
+> For Windows the steps are similar but need to be modified.
 
 1. Install [rustup](https://rustup.rs)
 2. Install the stable toolchain
@@ -22,7 +26,7 @@ rustup target add x86_64-linux-android
 export JAVA_HOME=/usr
 export ANDROID_HOME=$HOME/.android_sdk
 ```
-> *Note:* The `java` binary should be in `$JAVA_HOME/bin/`
+> _Note:_ The `java` binary should be in `$JAVA_HOME/bin/`
 6. Install [NDK 25](https://developer.android.com/ndk/downloads)
 ```sh
 mkdir -p $ANDROID_HOME/ndk
@@ -41,7 +45,7 @@ echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" > $ANDROID_HOME/licenses/android
 ./gradlew build
 ```
 
-> *Note:* The following packages are required to build the app. gradlew installs them (except ndk) during the first build by default
+> **_NOTE:_** The following packages are required to build the app. gradlew installs them (except ndk) during the first build by default
 
 | Path                 | Version      | Description                     | Location             |
 | -------------------- | ------------ | ------------------------------- | -------------------- |
@@ -71,7 +75,7 @@ export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 sdkmanager "build-tools;30.0.3" "emulator" "ndk;25.2.9519653" "patcher;v4" "platform-tools" "platforms;android-33"
 ```
 
-# Demo
+## Demo
 
 ### FileSystem Monitoring
 

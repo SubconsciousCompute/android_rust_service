@@ -114,7 +114,7 @@ pub async fn launch(fsmon_log: impl AsRef<Path> + Clone + Send + 'static) {
     Server::bind(&SocketAddr::from(([0, 0, 0, 0], 3000)))
         .serve(
             Router::new()
-                .route("/", get(|| async { "Hello from Shepherd!" }))
+                .route("/", get(|| async { "Hello from RustApp!" }))
                 .route(
                     "/fs",
                     get(|| async {

@@ -1,0 +1,14 @@
+layout {
+  pane split_direction="vertical" {
+    pane name="logcat"
+    pane name="shell"
+  }
+   floating_panes {
+    pane name="/fs" {
+      x "10%"
+      y "10%"
+      width "80%"
+      height "80%"
+    }
+  }
+}

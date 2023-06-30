@@ -1,0 +1,9 @@
+default_shell "zsh"
+pane_frames true
+layout_dir "/home/arghya/coded/rustapp/.vhs"
+default_layout "vhs"
+theme "catppuccin-mocha"
+
+env {
+  ZDOTDIR "/home/arghya/coded/rustapp/.vhs"
+}
