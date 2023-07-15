@@ -1,0 +1,6 @@
+services:
+  app:
+    image: subcom/rust_android_demo
+    build: .
+    volumes:
+      - .:/app

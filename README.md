@@ -1,8 +1,13 @@
-# <div align="center">Android Rust Service</div>
+# Android Rust Service
 
-Android App with foreground service using Rust Native Libraries. The service does FileSystem Monitoring and makes the logs available at http://localhost:3000/fs
+Android App with foreground service using Rust Native Libraries. The service
+does FileSystem Monitoring and makes the logs available at
+http://localhost:3000/fs
 
 ## Getting Started
+
+_A `docker-compose.yml` and `Dockerfile` is available in this repository.
+`docker compose up` should build the app. This is still beta._
 
 > **_NOTE:_** The following instructions are for Linux.
 > For MacOS you will have to change the download links.
@@ -10,42 +15,46 @@ Android App with foreground service using Rust Native Libraries. The service doe
 
 1. Install [rustup](https://rustup.rs)
 2. Install the stable toolchain
-```sh
-rustup toolchain install stable
-```
+    ```sh
+    rustup toolchain install stable
+    ```
+
 3. Add (required) android targets
-```sh
-rustup target add aarch64-linux-android
-rustup target add armv7-linux-androideabi
-rustup target add i686-linux-android
-rustup target add x86_64-linux-android
-```
+    ```sh
+    rustup target add aarch64-linux-android
+    rustup target add armv7-linux-androideabi
+    rustup target add i686-linux-android
+    rustup target add x86_64-linux-android
+    ```
 4. Install [JDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 5. Add the following environment variables
-```sh
-export JAVA_HOME=/usr
-export ANDROID_HOME=$HOME/.android_sdk
-```
-> _Note:_ The `java` binary should be in `$JAVA_HOME/bin/`
+    ```sh
+    export JAVA_HOME=/usr
+    export ANDROID_HOME=$HOME/.android_sdk
+    ```
+    > _Note:_ The `java` binary should be in `$JAVA_HOME/bin/`
+
 6. Install [NDK 25](https://developer.android.com/ndk/downloads)
-```sh
-mkdir -p $ANDROID_HOME/ndk
-wget https://dl.google.com/android/repository/android-ndk-r25c-linux.zip -O temp.zip
-unzip -d $ANDROID_HOME/ndk temp.zip
-rm temp.zip
-```
+    ```sh
+    mkdir -p $ANDROID_HOME/ndk
+    wget https://dl.google.com/android/repository/android-ndk-r25c-linux.zip -O temp.zip
+    unzip -d $ANDROID_HOME/ndk temp.zip
+    rm temp.zip
+    ```
+
 7. Accept SDK license
-```sh
-mkdir $ANDROID_HOME/licenses
-echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" > $ANDROID_HOME/licenses/android-sdk-license
-```
+    ```sh
+    mkdir $ANDROID_HOME/licenses
+    echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" > $ANDROID_HOME/licenses/android-sdk-license
+    ```
 8. Clone the repository & chdir into it
 9. Build
-```sh
-./gradlew build
-```
+    ```sh
+    ./gradlew build
+    ```
 
-> **_NOTE:_** The following packages are required to build the app. gradlew installs them (except ndk) during the first build by default
+**_NOTE:_** The following packages are required to build the app. gradlew
+installs them (except ndk) during the first build by default
 
 | Path                 | Version      | Description                     | Location             |
 | -------------------- | ------------ | ------------------------------- | -------------------- |
@@ -56,24 +65,25 @@ echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" > $ANDROID_HOME/licenses/android
 | platform-tools       | 34.0.3       | Android SDK Platform-Tools      | platform-tools       |
 | platforms;android-33 | 2            | Android SDK Platform 33         | platforms/android-33 |
 
-> If you wish to install the packages manually, follow the following steps instead of step 6
+If you wish to install the packages manually, follow the following steps instead of step 6
 
 - Install [command-line tools](https://developer.android.com/studio)
-```sh
-mkdir -p $ANDROID_HOME/cmdline-tools
-wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O temp.zip
-unzip -d $ANDROID_HOME/cmdline-tools temp.zip
-mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest 
-rm temp.zip
-```
+    ```sh
+    mkdir -p $ANDROID_HOME/cmdline-tools
+    wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O temp.zip
+    unzip -d $ANDROID_HOME/cmdline-tools temp.zip
+    mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest 
+    rm temp.zip
+    ```
+
 - Add to path
-```sh
-export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
-```
+    ```sh
+    export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+    ```
 - Install packages
-```sh
-sdkmanager "build-tools;30.0.3" "emulator" "ndk;25.2.9519653" "patcher;v4" "platform-tools" "platforms;android-33"
-```
+    ```sh
+    sdkmanager "build-tools;30.0.3" "emulator" "ndk;25.2.9519653" "patcher;v4" "platform-tools" "platforms;android-33"
+    ```
 
 ## Demo
 
