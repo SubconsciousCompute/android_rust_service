@@ -31,46 +31,41 @@ A `docker-compose.yml` and `Dockerfile` are available in this repository.
     > _Note:_ The `java` binary should be in `$JAVA_HOME/bin/`
 
 6. Install [command-line tools](https://developer.android.com/studio). Make sure that 
-    `$ANDROID_HOME/cmdline-tools/latest/bin` contains `sdkmanager` binary.
+    `$ANDROID_HOME/cmdline-tools/latest/bin` contains `sdkmanager` binary. Add
+    to `PATH`.
     ```shell
     mkdir -p $ANDROID_HOME/cmdline-tools
     wget https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip -O temp.zip
     unzip -d $ANDROID_HOME/cmdline-tools temp.zip
     mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest 
     rm temp.zip
+    export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+    sdkmanager --help # must work
     ```
 
-8. Accept SDK license so that `skdmanager` can install dependencies during build.
+7. Accept SDK license .
     ```shell
     mkdir $ANDROID_HOME/licenses
     echo "24333f8a63b6825ea9c5514f83c2829b004d1fee" > $ANDROID_HOME/licenses/android-sdk-license
     ```
+
+8. Install dependencies using `sdkmanager`. The following packages are required to build the app. 
+    ```shell
+    sdkmanager "build-tools;30.0.3" "emulator" "ndk;25.2.9519653" "patcher;v4" "platform-tools" "platforms;android-33"
+    ```
+
+    | Path                 | Version      | Description                     | Location             |
+    | -------------------- | ------------ | ------------------------------- | -------------------- |
+    | build-tools;30.0.3   | 30.0.3       | Android SDK Build-Tools 30.0.3  | build-tools/30.0.3   |
+    | emulator             | 32.1.13      | Android Emulator                | emulator             |
+    | ndk;25.2.9519653     | 25.2.9519653 | NDK (Side by side) 25.2.9519653 | ndk/25.2.9519653     |
+    | patcher;v4           | 1            | SDK Patch Applier v4            | patcher/v4           |
+    | platform-tools       | 34.0.3       | Android SDK Platform-Tools      | platform-tools       |
+    | platforms;android-33 | 2            | Android SDK Platform 33         | platforms/android-33 |
+
 9. Clone the repository & chdir into it and build.
     ```shell
     ./gradlew build
-    ```
-
-__NOTE:__ The following packages are required to build the app. gradlew
-installs them (except ndk) during the first build by default
-
-| Path                 | Version      | Description                     | Location             |
-| -------------------- | ------------ | ------------------------------- | -------------------- |
-| build-tools;30.0.3   | 30.0.3       | Android SDK Build-Tools 30.0.3  | build-tools/30.0.3   |
-| emulator             | 32.1.13      | Android Emulator                | emulator             |
-| ndk;25.2.9519653     | 25.2.9519653 | NDK (Side by side) 25.2.9519653 | ndk/25.2.9519653     |
-| patcher;v4           | 1            | SDK Patch Applier v4            | patcher/v4           |
-| platform-tools       | 34.0.3       | Android SDK Platform-Tools      | platform-tools       |
-| platforms;android-33 | 2            | Android SDK Platform 33         | platforms/android-33 |
-
-If you wish to install the packages manually, follow the following steps instead of step 6
-
-- Add to path
-    ```sh
-    export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
-    ```
-- Install packages
-    ```sh
-    sdkmanager "build-tools;30.0.3" "emulator" "ndk;25.2.9519653" "patcher;v4" "platform-tools" "platforms;android-33"
     ```
 
 ## Demo
