@@ -7,20 +7,17 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  docker:
+    timeout-minutes: 30
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '11'
-        distribution: 'temurin'
-        cache: gradle
+    - name: Checkout
+      uses: actions/checkout@v1
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew build
+    - name: Start containers
+      run: docker-compose -f "docker-compose.yml" up -d --build
+
+    - name: Stop containers
+      if: always()
+      run: docker-compose -f "docker-compose.yml" down
