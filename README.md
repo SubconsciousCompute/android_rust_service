@@ -1,3 +1,4 @@
+[![Android CI](https://github.com/SubconsciousCompute/android_rust_service/actions/workflows/android.yml/badge.svg)](https://github.com/SubconsciousCompute/android_rust_service/actions/workflows/android.yml)
 # Android Rust Service
 
 Android App with foreground service using Rust Native Libraries. The service
