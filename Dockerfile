@@ -36,7 +36,9 @@ RUN wget https://dl.google.com/android/repository/commandlinetools-linux-9477386
 # sdkmanager expect this path scheme 
 RUN mv $ANDROID_HOME/cmdline-tools/cmdline-tools $ANDROID_HOME/cmdline-tools/latest
 ENV PATH "$ANDROID_HOME/cmdline-tools/latest/bin:$PATH"
-RUN sdkmanager "build-tools;30.0.3" "emulator" "ndk;25.2.9519653" "patcher;v4" "platform-tools" "platforms;android-33"
+RUN yes | sdkmanager --licenses 
+
+RUN sdkmanager "build-tools;30.0.3" "emulator" "ndk;25.2.9519653" "platform-tools" "platforms;android-34"
 
 COPY ./.ci/build_inside_docker.sh /root/build_inside_docker.sh
 RUN ln -s /usr/bin/python3 /usr/bin/python
