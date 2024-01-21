@@ -1,14 +1,12 @@
 [![Android CI](https://github.com/SubconsciousCompute/android_rust_service/actions/workflows/android.yml/badge.svg)](https://github.com/SubconsciousCompute/android_rust_service/actions/workflows/android.yml)
 # Android Rust Service
 
-Android App with foreground service using Rust Native Libraries. The service
-does FileSystem Monitoring and makes the logs available at
-http://localhost:3000/fs
+A demo Android App with foreground service using Rust Native Libraries. The service does file-system monitoring and 
+makes the logs available at http://localhost:3000/fs.
 
 ## Getting Started On Linux
 
-A `docker-compose.yml` and `Dockerfile` are available in this repository.
-`docker compose up` should build the app. This is still beta.
+A `docker-compose.yml` and `Dockerfile` are available in this repository. `docker compose up` should build and run the app.
 
 1. Install [rustup](https://rustup.rs)
 2. Install the stable toolchain
