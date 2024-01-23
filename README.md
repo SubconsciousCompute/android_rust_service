@@ -4,6 +4,8 @@
 A demo Android App with foreground service using Rust Native Libraries. The service does file-system monitoring and 
 makes the logs available at http://localhost:3000/fs.
 
+_This demo is not tested on Windows. PR welcome!_
+
 ## Getting Started On Linux
 
 A `docker-compose.yml` and `Dockerfile` are available in this repository. `docker compose up` should build and run the app.
